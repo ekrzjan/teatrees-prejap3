@@ -2,6 +2,7 @@ package com.epam.prejap.teatrees.game;
 
 import com.epam.prejap.teatrees.block.Block;
 import com.epam.prejap.teatrees.block.BlockFeed;
+import com.epam.prejap.teatrees.block.RotatedBlock;
 
 public class Playfield {
 
@@ -39,8 +40,9 @@ public class Playfield {
         hide();
         boolean moved;
         switch (move) {
-            case LEFT -> moveLeft();
+            case LEFT  -> moveLeft();
             case RIGHT -> moveRight();
+            case UP    -> rotate();
         }
         moved = moveDown();
         show();
@@ -66,6 +68,12 @@ public class Playfield {
             moved = true;
         }
         return moved;
+    }
+
+    private void rotate() {
+        Block rotated = new RotatedBlock(block);
+        if (isValidMove(block, 0, 0))
+            block = rotated;
     }
 
     private boolean isValidMove(Block block, int rowOffset, int colOffset) {
