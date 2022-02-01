@@ -1,9 +1,19 @@
 package com.epam.prejap.teatrees.block;
 
 /**
+ * Clockwise rotation for blocks in Tetris game.
+ *
  * @author Krzysztof Janas
+ * @see Block
  */
 public final class RotatedBlock extends Block {
+    /**
+     * Create new Block that is rotated version of given block.
+     *
+     * The given block is not modified.
+     *
+     * @param block to rotate
+     */
     public RotatedBlock(Block block) {
         super(rotatedDots(block));
     }

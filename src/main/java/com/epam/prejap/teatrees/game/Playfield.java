@@ -6,15 +6,15 @@ import com.epam.prejap.teatrees.block.RotatedBlock;
 
 public class Playfield {
 
-    private final Grid grid;
     private final int rows;
     private final int cols;
     private final Printer printer;
     private final BlockFeed feed;
 
-    private Block block;
-    private int row;
-    private int col;
+    final Grid grid;
+    Block block;
+    int row;
+    int col;
 
     public Playfield(int rows, int cols, BlockFeed feed, Printer printer) {
         this.rows = rows;
@@ -36,6 +36,22 @@ public class Playfield {
         show();
     }
 
+    /**
+     * Perform move for current block if possible
+     * (there is place for the block after move).
+     *
+     * After each move, the block is shifted down one unit (if possible).
+     *
+     * Possible moves:
+     * <ul>
+     * <li>LEFT - move block one unit left;</li>
+     * <li>RIGHT - move block one unit right;</li>
+     * <li>UP - rotate block clockwise.</li>
+     * </ul>
+     *
+     * @param move action for current block
+     * @return true if the current block was moved down
+     */
     public boolean move(Move move) {
         hide();
         boolean moved;
@@ -72,7 +88,7 @@ public class Playfield {
 
     private void rotate() {
         Block rotated = new RotatedBlock(block);
-        if (isValidMove(block, 0, 0))
+        if (isValidMove(rotated, 0, 0))
             block = rotated;
     }
 

@@ -53,6 +53,7 @@ public class RotatedBlockTest {
         return new Object[][]{
                 { new OBlock() },
                 { new ZBlock() },
+                { new RotatedBlock(new ZBlock()) },
                 { line },
                 { axe },
                 { colors },
@@ -84,6 +85,7 @@ public class RotatedBlockTest {
         return new Object[][]{
                 { new OBlock(), new OBlock() },
                 { new ZBlock(), new MockedBlock(new byte[][]{{0, 1}, {1, 1}, {1, 0}}) },
+                { new RotatedBlock(new ZBlock()), new ZBlock() },
                 { line,   new MockedBlock(new byte[][]{{1}, {1}, {1}, {1}, {1}}) },
                 { axe,    new MockedBlock(new byte[][]{{1, 0, 1}, {1, 1, 0}, {1, 0, 1}, {1, 0, 0}}) },
                 { colors, new MockedBlock(new byte[][]{{4, 1}, {5, 2}, {6, 3}})},
