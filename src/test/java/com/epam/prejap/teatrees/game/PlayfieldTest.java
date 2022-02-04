@@ -62,11 +62,11 @@ public class PlayfieldTest {
                                          {0, 0, 0, 0, 0},  // {0, 0, 1, 1, 0}
                                          {0, 0, 0, 0, 0}}; // {0, 0, 0, 0, 0}
 
-        var expectedGrid  = new byte[][]{{0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0},
-                                         {0, 0, 1, 0, 0},
-                                         {0, 1, 1, 0, 0},
-                                         {0, 1, 0, 0, 0}};
+        var expectedGrid  = new Grid(new byte[][]{{0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0},
+                                                  {0, 0, 1, 0, 0},
+                                                  {0, 1, 1, 0, 0},
+                                                  {0, 1, 0, 0, 0}});
 
         Block block = new ZBlock();
 
@@ -96,18 +96,18 @@ public class PlayfieldTest {
                                          {0, 0, 0, 0, 0},  // {0, 0, 0, 0, 0}
                                          {0, 0, 0, 0, 0}}; // {0, 0, 0, 0, 0}
         
-        var expectedGrid  = new byte[][]{{0, 0, 0, 0, 0},
-                                         {0, 1, 0, 0, 0},
-                                         {1, 1, 0, 0, 0},
-                                         {1, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0}};
+        var expectedGrid  = new Grid(new byte[][]{{0, 0, 0, 0, 0},
+                                                  {0, 1, 0, 0, 0},
+                                                  {1, 1, 0, 0, 0},
+                                                  {1, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0}});
 
         Block block = new ZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
         playfield.row   = 0;
-        playfield.col   = 1;
+        playfield.col   = 0;
 
         // when
         boolean movedDown = playfield.move(Move.UP);
@@ -116,7 +116,7 @@ public class PlayfieldTest {
         SoftAssert sa = new SoftAssert();
         sa.assertTrue(movedDown);
         sa.assertEquals(playfield.row, 1);
-        sa.assertEquals(playfield.col, 1);
+        sa.assertEquals(playfield.col, 0);
         sa.assertTrue(playfield.block instanceof RotatedBlock);
         sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
@@ -130,11 +130,11 @@ public class PlayfieldTest {
                                          {2, 0, 2, 2, 2},  // {2, 0, 2, 2, 2}
                                          {2, 2, 2, 2, 2}}; // {2, 2, 2, 2, 2}
         
-        var expectedGrid  = new byte[][]{{2, 2, 2, 2, 2},
-                                         {2, 0, 1, 2, 2},
-                                         {2, 1, 1, 0, 2},
-                                         {2, 1, 2, 2, 2},
-                                         {2, 2, 2, 2, 2}};
+        var expectedGrid  = new Grid(new byte[][]{{2, 2, 2, 2, 2},
+                                                  {2, 0, 1, 2, 2},
+                                                  {2, 1, 1, 0, 2},
+                                                  {2, 1, 2, 2, 2},
+                                                  {2, 2, 2, 2, 2}});
 
         Block block = new ZBlock();
 
@@ -164,11 +164,11 @@ public class PlayfieldTest {
                                          {0, 0, 0, 0, 0},  // {0, 1, 1, 0, 0}
                                          {0, 0, 0, 0, 0}}; // {0, 0, 1, 1, 0}
 
-        var expectedGrid  = new byte[][]{{0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0},
-                                         {0, 1, 1, 0, 0},
-                                         {0, 0, 1, 1, 0}};
+        var expectedGrid  = new Grid(new byte[][]{{0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0},
+                                                  {0, 1, 1, 0, 0},
+                                                  {0, 0, 1, 1, 0}});
 
         Block block = new ZBlock();
 
@@ -198,11 +198,11 @@ public class PlayfieldTest {
                                          {0, 0, 0, 0, 0},  // {0, 0, 0, 1, 0}
                                          {0, 0, 0, 0, 0}}; // {0, 0, 0, 0, 0}
 
-        var expectedGrid  = new byte[][]{{0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 1},
-                                         {0, 0, 0, 1, 1},
-                                         {0, 0, 0, 1, 0}};
+        var expectedGrid  = new Grid(new byte[][]{{0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 1},
+                                                  {0, 0, 0, 1, 1},
+                                                  {0, 0, 0, 1, 0}});
 
         Block block = new RotatedBlock(new ZBlock());
 
@@ -232,11 +232,11 @@ public class PlayfieldTest {
                                          {2, 2, 2, 2, 2},  // {2, 0, 2, 2, 2}
                                          {2, 2, 2, 2, 2}}; // {2, 2, 2, 2, 2}
 
-        var expectedGrid  = new byte[][]{{2, 2, 2, 2, 2},
-                                         {2, 1, 1, 2, 2},
-                                         {2, 0, 1, 1, 2},
-                                         {2, 2, 2, 2, 2},
-                                         {2, 2, 2, 2, 2}};
+        var expectedGrid  = new Grid(new byte[][]{{2, 2, 2, 2, 2},
+                                                  {2, 1, 1, 2, 2},
+                                                  {2, 0, 1, 1, 2},
+                                                  {2, 2, 2, 2, 2},
+                                                  {2, 2, 2, 2, 2}});
 
         Block block = new ZBlock();
 
