@@ -15,7 +15,8 @@ public class PlayfieldTest {
         BlockFeed blockFeed = new BlockFeed();
         Playfield playfield = new Playfield(grid.length, grid[0].length, blockFeed, printer);
         for(int i = 0; i < grid.length; ++i)
-            System.arraycopy(grid[i], 0, playfield.grid[i], 0, grid[0].length);
+            for(int j = 0; j < grid[0].length; ++j)
+                playfield.grid.fillCell(i, j, grid[i][j]);
         return playfield;
     }
 
@@ -27,11 +28,11 @@ public class PlayfieldTest {
                                          {0, 0, 0, 0, 0},  // {0, 0, 0, 0, 0}
                                          {0, 0, 0, 0, 0}}; // {0, 0, 0, 0, 0}
 
-        var expectedGrid  = new byte[][]{{0, 0, 0, 0, 0},
-                                         {0, 0, 0, 0, 0},
-                                         {0, 0, 1, 0, 0},
-                                         {0, 1, 1, 0, 0},
-                                         {0, 1, 0, 0, 0}};
+        var expectedGrid  = new Grid(new byte[][]{{0, 0, 0, 0, 0},
+                                                  {0, 0, 0, 0, 0},
+                                                  {0, 0, 1, 0, 0},
+                                                  {0, 1, 1, 0, 0},
+                                                  {0, 1, 0, 0, 0}});
 
         Block block = new ZBlock();
 
@@ -49,8 +50,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 2);
         sa.assertEquals(playfield.col, 1);
         sa.assertTrue(playfield.block instanceof RotatedBlock);
-        IntStream.range(0, playfield.row)
-                 .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
 
@@ -84,8 +84,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 2);
         sa.assertEquals(playfield.col, 1);
         sa.assertTrue(playfield.block instanceof RotatedBlock);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
     
@@ -119,8 +118,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 1);
         sa.assertEquals(playfield.col, 1);
         sa.assertTrue(playfield.block instanceof RotatedBlock);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
     
@@ -154,8 +152,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 1);
         sa.assertEquals(playfield.col, 1);
         sa.assertTrue(playfield.block instanceof RotatedBlock);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
 
@@ -189,8 +186,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 3);
         sa.assertEquals(playfield.col, 1);
         sa.assertSame(playfield.block, block);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
     
@@ -224,8 +220,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 2);
         sa.assertEquals(playfield.col, 3);
         sa.assertSame(playfield.block, block);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
 
@@ -259,8 +254,7 @@ public class PlayfieldTest {
         sa.assertEquals(playfield.row, 1);
         sa.assertEquals(playfield.col, 1);
         sa.assertSame(playfield.block, block);
-        IntStream.range(0, playfield.row)
-                .forEach(i -> sa.assertEquals(playfield.grid[i], expectedGrid[i]));
+        sa.assertEquals(playfield.grid, expectedGrid);
         sa.assertAll();
     }
 }
