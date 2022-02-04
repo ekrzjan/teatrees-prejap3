@@ -20,6 +20,11 @@ public class PlayfieldTest {
         return playfield;
     }
 
+    private Block mockedZBlock() {
+        return new MockedBlock(new byte[][]{{1, 1, 0},
+                                            {0, 1, 1}});
+    }
+
     public void rotateBlockInEmptySpace() {
         // given
         var playfieldGrid = new byte[][]{{0, 0, 0, 0, 0},  // {0, 0, 0, 0, 0}
@@ -34,7 +39,7 @@ public class PlayfieldTest {
                                                   {0, 1, 1, 0, 0},
                                                   {0, 1, 0, 0, 0}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -68,7 +73,7 @@ public class PlayfieldTest {
                                                   {0, 1, 1, 0, 0},
                                                   {0, 1, 0, 0, 0}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -102,7 +107,7 @@ public class PlayfieldTest {
                                                   {1, 0, 0, 0, 0},
                                                   {0, 0, 0, 0, 0}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -136,7 +141,7 @@ public class PlayfieldTest {
                                                   {2, 1, 2, 2, 2},
                                                   {2, 2, 2, 2, 2}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -170,7 +175,7 @@ public class PlayfieldTest {
                                                   {0, 1, 1, 0, 0},
                                                   {0, 0, 1, 1, 0}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -204,7 +209,7 @@ public class PlayfieldTest {
                                                   {0, 0, 0, 1, 1},
                                                   {0, 0, 0, 1, 0}});
 
-        Block block = new RotatedBlock(new ZBlock());
+        Block block = new RotatedBlock(mockedZBlock());
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
@@ -238,7 +243,7 @@ public class PlayfieldTest {
                                                   {2, 2, 2, 2, 2},
                                                   {2, 2, 2, 2, 2}});
 
-        Block block = new ZBlock();
+        Block block = mockedZBlock();
 
         Playfield playfield = createPlayfield(playfieldGrid);
         playfield.block = block;
